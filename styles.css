@@ -214,7 +214,7 @@ a { text-decoration: none; color: inherit; }
   justify-content: center;
   cursor: pointer;
   transition: 0.15s ease;
-  z-index: 5;
+  z-index: 50; /* ensure buttons are always above cards */
 }
 
 .carousel-btn--prev { left: 8px; }
