@@ -170,13 +170,17 @@
 
         let index = 0;
 
-        function clamp(n, min, max) {
-          return Math.max(min, Math.min(max, n));
+        function mod(n, m) {
+          return ((n % m) + m) % m;
         }
 
         function render() {
           slides.forEach((slide, i) => {
-            const offset = i - index; // -2, -1, 0, 1, 2...
+            // distance around a loop (-1,0,1) with wrap support
+            const raw = i - index;
+            const wrapped = raw > slides.length / 2 ? raw - slides.length : raw;
+            const offset = wrapped < -slides.length / 2 ? wrapped + slides.length : wrapped;
+
             slide.classList.remove('is-active', 'is-prev', 'is-next', 'is-hidden');
 
             if (offset === 0) slide.classList.add('is-active');
@@ -186,13 +190,10 @@
 
             slide.setAttribute('aria-hidden', offset === 0 ? 'false' : 'true');
           });
-
-          prevBtn.disabled = index === 0;
-          nextBtn.disabled = index === slides.length - 1;
         }
 
         function go(delta) {
-          index = clamp(index + delta, 0, slides.length - 1);
+          index = mod(index + delta, slides.length);
           render();
         }
 
