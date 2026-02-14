@@ -315,18 +315,13 @@ a { text-decoration: none; color: inherit; }
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 28px;
 }
 
-.footer-brand {
-  display: inline-flex;
-}
-
-.footer-top {
+.footer-col {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .footer-heading {
@@ -341,7 +336,6 @@ a { text-decoration: none; color: inherit; }
 .footer-links {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 10px;
   font-size: 13px;
   opacity: 0.95;
@@ -352,7 +346,6 @@ a { text-decoration: none; color: inherit; }
 .footer-icons {
   display: flex;
   gap: 10px;
-  flex-shrink: 0;
 }
 
 .icon {
@@ -380,7 +373,7 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 960px) {
   .container { padding: 0 24px; }
 
-  /* Benefits: show tabs + one stacked card */
+  /* Benefits */
   .benefits-tabs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -420,28 +413,30 @@ a { text-decoration: none; color: inherit; }
     opacity: 1;
     pointer-events: auto;
     transition: none;
-    display: none; /* only show active */
+    display: none;
   }
 
   .benefits-track .feature-card.is-active { display: flex; }
 
   /* Signup */
   .signup { grid-template-columns: 1fr; }
-
-  /* Footer tweaks */
-  .footer { padding: 32px 0; }
-  .footer-grid { gap: 14px; }
 }
 
 @media (min-width: 961px) {
-  /* Desktop footer: 2 columns look */
   .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    column-gap: 40px;
-    row-gap: 14px;
-    align-items: start;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
   }
+
+  .footer-col--links {
+    grid-column: 1;
+  }
+
+  .footer-col--social {
+    grid-column: 3;
+    align-items: flex-end;
+  }
+}
 
   .footer-brand {
     grid-column: 1;
