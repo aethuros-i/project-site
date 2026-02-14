@@ -1,3 +1,6 @@
+<!-- ===============================
+FILE: styles.css
+=============================== -->
 :root {
   /* Palette */
   --ice: #BBE0EF;        /* hero / section background */
@@ -60,11 +63,10 @@ a { text-decoration: none; color: inherit; }
   font-weight: 700;
 }
 
-.logo-mark {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  background: var(--coral);
+.logo-img {
+  height: 32px;
+  width: auto;
+  display: block;
 }
 
 .nav-right {
