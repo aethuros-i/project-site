@@ -126,7 +126,7 @@ a { text-decoration: none; color: inherit; }
 .hero-subtext {
   font-size: 18px;
   opacity: 0.85;
-  margin: 0 0 24px;
+  margin: 0 0 36px; /* more space before CTA */
 }
 
 .hero-secondary {
@@ -457,5 +457,4 @@ a { text-decoration: none; color: inherit; }
     grid-column: 3;
     align-items: flex-end;
   }
-}
 }
