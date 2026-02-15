@@ -405,67 +405,6 @@ a { text-decoration: none; color: inherit; }
 
 /* ===== FOOTER ===== */
 .footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 0;
-  background: var(--white);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 28px;
-}
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.footer-heading {
-  margin: 0;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(22, 30, 84, 0.85);
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 13px;
-  opacity: 0.95;
-}
-
-.footer-links a:hover { color: var(--coral); }
-
-.footer-icons {
-  display: flex;
-  gap: 10px;
-}
-
-.icon {
-  width: 32px;
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.icon img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  display: block;
-}
-
-.icon:hover img {
-  opacity: 0.7;
-  transform: scale(1.05);
-  transition: 0.15s ease;
-}
 
   border-top: 1px solid var(--border);
   padding: 40px 0;
