@@ -442,6 +442,7 @@ a { text-decoration: none; color: inherit; }
 .persona-img {
   width: 100%;
   border-radius: var(--radius-md);
+  background-color: rgba(22, 30, 84, 0.08); /* fallback if image path is wrong */
   background-image: url("images/hero-bg.jpg");
   background-size: cover;
   background-position: center;
@@ -449,11 +450,15 @@ a { text-decoration: none; color: inherit; }
   outline: 1px solid rgba(22, 30, 84, 0.12);
   overflow: hidden;
   position: relative;
+  display: block;
 }
 
 /* IMPORTANT: give the image boxes height on desktop too */
-.persona-img--top { height: 380px; }
-.persona-img--bottom { height: 220px; }
+.persona-img--top { height: 380px !important; min-height: 380px; }
+.persona-img--bottom { height: 220px !important; min-height: 220px; }
+
+/* Hide any leftover labels (legacy) */
+.persona-img-label { display: none !important; }
 
 .persona-img-label {
   position: absolute;
