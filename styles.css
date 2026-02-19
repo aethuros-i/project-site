@@ -199,45 +199,60 @@ a { text-decoration: none; color: inherit; }
 .benefits {
   position: relative;
   overflow: hidden;
-  min-height: 88vh;
   display: flex;
   align-items: center;
 }
 
+/* Slightly shorter overall section height */
+.benefits { padding: 48px 0; }
+
+.benefits-inner {
+  position: relative;
+}
+
+/* One unified shell that contains BOTH left + right */
+.benefits-shell {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(22, 30, 84, 0.10);
+  background: rgba(255, 255, 255, 0.60);
+  box-shadow: 0 16px 60px rgba(22, 30, 84, 0.12);
+  padding: 32px;
+}
+
+/* Blurred background sits INSIDE the shell */
 .benefits-bg {
   position: absolute;
   inset: 0;
-  background-image: url("images/benefits-bg.jpg");
+  background-image: url("images/hero-bg.jpg");
   background-size: cover;
   background-position: center;
   filter: blur(14px);
-  transform: scale(1.08);
+  transform: scale(1.10);
   opacity: 0.55;
   pointer-events: none;
 }
 
-.benefits-inner {
+.benefits-layout {
   position: relative;
   z-index: 1;
-}
-
-.benefits-layout {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  gap: 48px;
+  gap: 44px;
   align-items: center;
 }
 
+/* Left panel is now "floating content" inside the shared shell */
 .benefits-left {
-  background: rgba(255,255,255,0.72);
-  border: 1px solid rgba(22, 30, 84, 0.10);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  box-shadow: 0 10px 40px rgba(22, 30, 84, 0.10);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
 .benefits-eyebrow {
-  margin: 0 0 18px;
+  margin: 0 0 16px;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -245,7 +260,6 @@ a { text-decoration: none; color: inherit; }
   color: rgba(22, 30, 84, 0.70);
 }
 
-/* Tabs become the left clickable list on desktop */
 .benefits-tabs {
   display: flex;
   flex-direction: column;
@@ -256,7 +270,7 @@ a { text-decoration: none; color: inherit; }
   width: 100%;
   text-align: left;
   border: 1px solid rgba(22, 30, 84, 0.14);
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.70);
   color: var(--midnight);
   padding: 16px 16px;
   border-radius: 18px;
@@ -291,7 +305,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .benefits-cta {
-  margin-top: 22px;
+  margin-top: 18px;
 }
 
 .benefits-right {
@@ -304,7 +318,11 @@ a { text-decoration: none; color: inherit; }
   position: relative;
 }
 
-/* Cards are stacked; only active shows */
+/* Mobile-only CTA overlay */
+.benefits-media-cta {
+  display: none;
+}
+
 .benefits-media .feature-card {
   display: none;
   background: rgba(0,0,0,0.22);
@@ -324,7 +342,7 @@ a { text-decoration: none; color: inherit; }
 
 .benefits-media .feature-text h3 {
   color: var(--white);
-  font-size: 34px;
+  font-size: 32px;
   margin: 0 0 10px;
 }
 
@@ -334,36 +352,28 @@ a { text-decoration: none; color: inherit; }
   opacity: 1;
 }
 
-/* Vertical media placeholder (swap to video/image later) */
+/* Vertical media placeholder (use hero image for now so you can see it working) */
 .benefits-media .feature-media {
   width: 100%;
   aspect-ratio: 9 / 16;
   border-radius: 26px;
-  background: rgba(255,255,255,0.12);
+  background-image: url("images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
   outline: 1px solid rgba(255,255,255,0.20);
   overflow: hidden;
 }
 
-/* Hide old carousel arrows entirely */
-.carousel-btn { display: none !important; }
-
-/* ===== MOBILE: show all three tabs on one row over the media ===== */
 @media (max-width: 960px) {
-  .benefits { min-height: auto; padding: 40px 0; }
+  /* Reduce height / make section feel tighter */
+  .benefits { padding: 36px 0; }
+
+  .benefits-shell { padding: 18px; }
 
   .benefits-layout {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 14px;
   }
-
-  .benefits-left {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-  }
-
-  .benefits-eyebrow { margin-bottom: 12px; }
 
   .benefits-tabs {
     display: grid;
@@ -384,18 +394,27 @@ a { text-decoration: none; color: inherit; }
 
   .tab-sub { display: none; }
 
-  .benefits-cta {
-    margin-top: 12px;
+  /* Hide the left CTA on mobile */
+  .benefits-cta { display: none; }
+
+  /* Overlay CTA on the media and center it */
+  .benefits-media-cta {
+    display: inline-flex;
+    position: absolute;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    z-index: 5;
+    width: min(320px, 90%);
   }
 
-  .benefits-right {
-    justify-content: center;
+  .benefits-media-cta.btn-primary {
+    height: 54px;
+    border-radius: 999px;
   }
 
-  .benefits-media {
-    width: min(560px, 100%);
-  }
-
+  .benefits-right { justify-content: center; }
+  .benefits-media { width: min(560px, 100%); }
   .benefits-media .feature-text h3 { font-size: 26px; }
 }
 
