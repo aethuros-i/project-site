@@ -201,6 +201,30 @@ a { text-decoration: none; color: inherit; }
   display: none;
 }
 
+/* Origin (2-column: image left, text right) */
+.origin {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.origin-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.origin-media img {
+  width: min(420px, 100%);
+  height: auto;
+  display: block;
+}
+
+.origin-copy {
+  text-align: left;
+}
+
 .plain-hero-title {
   font-family: 'ZT Otez', 'Inter', sans-serif;
   font-weight: 400;
@@ -210,38 +234,38 @@ a { text-decoration: none; color: inherit; }
 }
 
 .plain-hero-sub {
-  margin: 0 auto 18px;
+  margin: 0;
   max-width: 62ch;
   font-size: 16px;
   opacity: 0.9;
   color: var(--midnight);
 }
 
-.plain-hero-points {
-  display: grid;
-  gap: 8px;
-  justify-items: center;
-  font-size: 14px;
-  opacity: 0.9;
-  color: var(--midnight);
-}
 
 @media (max-width: 960px) {
   /* Keep logo from overlapping hero text on mobile */
   .hero-logo {
-    top: 28px;
-    left: 28px;
+    top: 18px;
+    left: 18px;
   }
 
   .hero-logo img { width: 26px; }
 
-  /* Extra top padding so text never collides with logo */
   .hero { padding-top: 150px; }
 
-  /* Hero form stacks nicely */
   .hero-waitlist .waitlist-row { grid-template-columns: 1fr; }
   .hero-waitlist .btn { width: 100%; }
+
+  /* Origin stacks on mobile (image on top) */
+  .origin {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .origin-copy { text-align: center; }
+  .plain-hero-sub { margin: 0 auto; }
 }
+
 
 
 /* ===== BENEFITS (Future.co-style) ===== */
