@@ -69,55 +69,65 @@
     </section>
 
     <!-- ================= FEATURES / BENEFITS ================= -->
-    <section id="benefits" class="section" aria-label="Benefits">
-      <div class="container">
-        <div class="benefits-carousel" data-carousel>
+    <section id="benefits" class="section benefits" aria-label="Benefits">
+      <!-- Blurred background image placeholder (swap later) -->
+      <div class="benefits-bg" aria-hidden="true"></div>
 
-          <!-- Mobile tabs (desktop hides these) -->
-          <div class="benefits-tabs" role="tablist" aria-label="Benefits tabs">
-            <button class="tab is-active" type="button" role="tab" aria-selected="true" data-tab="0">Benefit 1</button>
-            <button class="tab" type="button" role="tab" aria-selected="false" data-tab="1">Benefit 2</button>
-            <button class="tab" type="button" role="tab" aria-selected="false" data-tab="2">Benefit 3</button>
+      <div class="container benefits-inner" data-carousel>
+        <div class="benefits-layout">
+
+          <!-- LEFT: clickable benefit list + CTA -->
+          <aside class="benefits-left" aria-label="How Rulya helps">
+            <p class="benefits-eyebrow">How it works</p>
+            <div class="benefits-tabs" role="tablist" aria-label="Benefits">
+              <button class="tab is-active" type="button" role="tab" aria-selected="true" data-tab="0">
+                <span class="tab-title">Book fast</span>
+                <span class="tab-sub">Find a game without the group chat.</span>
+              </button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="1">
+                <span class="tab-title">Fill the court</span>
+                <span class="tab-sub">Get matched with players nearby.</span>
+              </button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="2">
+                <span class="tab-title">Split automatically</span>
+                <span class="tab-sub">Pay your share in seconds.</span>
+              </button>
+            </div>
+
+            <div class="benefits-cta">
+              <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+            </div>
+          </aside>
+
+          <!-- RIGHT: vertical media stack (phone/video placeholder) -->
+          <div class="benefits-right" aria-label="Benefit preview">
+            <div class="benefits-media">
+              <div class="feature-card is-active" data-slide>
+                <div class="feature-text">
+                  <h3>Book fast</h3>
+                  <p>Game found in a couple taps. Court booked. Cost split.</p>
+                </div>
+                <div class="feature-media" aria-hidden="true"></div>
+              </div>
+
+              <div class="feature-card" data-slide>
+                <div class="feature-text">
+                  <h3>Fill the court</h3>
+                  <p>See open games nearby and join instantly — no awkward DMs.</p>
+                </div>
+                <div class="feature-media" aria-hidden="true"></div>
+              </div>
+
+              <div class="feature-card" data-slide>
+                <div class="feature-text">
+                  <h3>Split automatically</h3>
+                  <p>Clear pricing and automatic split so nobody is chasing payments.</p>
+                </div>
+                <div class="feature-media" aria-hidden="true"></div>
+              </div>
+            </div>
           </div>
 
-          <!-- Desktop arrows (mobile hides these) -->
-          <button class="carousel-btn carousel-btn--prev" type="button" aria-label="Previous benefit" data-prev>
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
-
-          <div class="benefits-track" role="region" aria-label="Benefits" aria-roledescription="carousel" tabindex="0" data-track>
-            <div class="feature-card is-active" data-slide>
-              <div class="feature-text">
-                <h3>Benefit/Feature 1</h3>
-                <p>Call out a feature, benefit, or value that can stand on its own.</p>
-              </div>
-              <div class="feature-media" aria-hidden="true"></div>
-            </div>
-
-            <div class="feature-card" data-slide>
-              <div class="feature-text">
-                <h3>Benefit/Feature 2</h3>
-                <p>Call out a feature, benefit, or value that can stand on its own.</p>
-              </div>
-              <div class="feature-media" aria-hidden="true"></div>
-            </div>
-
-            <div class="feature-card" data-slide>
-              <div class="feature-text">
-                <h3>Benefit/Feature 3</h3>
-                <p>Call out a feature, benefit, or value that can stand on its own.</p>
-              </div>
-              <div class="feature-media" aria-hidden="true"></div>
-            </div>
-          </div>
-
-          <button class="carousel-btn carousel-btn--next" type="button" aria-label="Next benefit" data-next>
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
         </div>
       </div>
     </section>
@@ -248,40 +258,22 @@
       </div>
     </footer>
 
-    <!-- ================= CAROUSEL SCRIPT ================= -->
+    <!-- ================= BENEFITS SCRIPT ================= -->
     <script>
       (function () {
-        const carousel = document.querySelector('[data-carousel]');
-        if (!carousel) return;
+        const root = document.querySelector('[data-carousel]');
+        if (!root) return;
 
-        const track = carousel.querySelector('[data-track]');
-        const slides = Array.from(carousel.querySelectorAll('[data-slide]'));
-        const prevBtn = carousel.querySelector('[data-prev]');
-        const nextBtn = carousel.querySelector('[data-next]');
-        const tabs = Array.from(carousel.querySelectorAll('[data-tab]'));
+        const slides = Array.from(root.querySelectorAll('[data-slide]'));
+        const tabs = Array.from(root.querySelectorAll('[data-tab]'));
 
         let currentIndex = 0;
 
-        function updateDesktopClasses() {
-          slides.forEach((slide, index) => {
-            slide.classList.remove('is-active','is-prev','is-next','is-hidden');
-
-            if (index === currentIndex) {
-              slide.classList.add('is-active');
-            } else if (index === (currentIndex - 1 + slides.length) % slides.length) {
-              slide.classList.add('is-prev');
-            } else if (index === (currentIndex + 1) % slides.length) {
-              slide.classList.add('is-next');
-            } else {
-              slide.classList.add('is-hidden');
-            }
-          });
-        }
-
-        function updateMobileTabs() {
+        function update() {
           tabs.forEach((tab, i) => {
-            tab.classList.toggle('is-active', i === currentIndex);
-            tab.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+            const active = i === currentIndex;
+            tab.classList.toggle('is-active', active);
+            tab.setAttribute('aria-selected', active ? 'true' : 'false');
           });
 
           slides.forEach((slide, i) => {
@@ -289,32 +281,17 @@
           });
         }
 
-        function update() {
-          if (window.innerWidth >= 961) {
-            updateDesktopClasses();
-          } else {
-            updateMobileTabs();
-          }
-        }
-
         function goTo(index) {
           currentIndex = (index + slides.length) % slides.length;
           update();
         }
 
-        if (prevBtn) {
-          prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
-        }
-
-        if (nextBtn) {
-          nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
-        }
-
-        tabs.forEach((tab, i) => {
-          tab.addEventListener('click', () => goTo(i));
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const idx = Number(tab.getAttribute('data-tab'));
+            if (!Number.isNaN(idx)) goTo(idx);
+          });
         });
-
-        window.addEventListener('resize', update);
 
         update();
       })();
@@ -495,9 +472,6 @@
 
           track.addEventListener('transitionend', onEnd);
         }
-
-        
-        nextBtn && nextBtn.addEventListener('click', () => { shiftLeft(); resetAutoplay(); });
 
         // Init
         setActive(1);
