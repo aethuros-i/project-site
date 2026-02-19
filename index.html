@@ -411,12 +411,6 @@
           });
         }
 
-        function getShiftPx() {
-          const gap = parseFloat(getComputedStyle(track).gap || '0');
-          const w = slides[0]?.getBoundingClientRect().width || 0;
-          return w + gap;
-        }
-
         function resetAutoplay() {
           if (timer) window.clearInterval(timer);
           timer = window.setInterval(() => shiftLeft(), intervalMs);
@@ -426,53 +420,25 @@
           if (isAnimating) return;
           isAnimating = true;
 
-          const shiftPx = getShiftPx();
-          track.classList.add('is-shifting');
-          track.style.transform = `translateX(-${shiftPx}px)`;
+          // Re-order nodes and re-assign classes (CSS handles animation)
+          const first = slides.shift();
+          slides.push(first);
+          track.appendChild(first);
 
-          const onEnd = () => {
-            track.removeEventListener('transitionend', onEnd);
-            track.classList.remove('is-shifting');
-            track.style.transform = 'translateX(0)';
-
-            const first = slides.shift();
-            slides.push(first);
-            track.appendChild(first);
-
-            setActive(1);
-            isAnimating = false;
-          };
-
-          track.addEventListener('transitionend', onEnd);
+          setActive(1);
+          isAnimating = false;
         }
 
         function shiftRight() {
           if (isAnimating) return;
           isAnimating = true;
 
-          const shiftPx = getShiftPx();
-
           const last = slides.pop();
           slides.unshift(last);
           track.insertBefore(last, track.firstChild);
 
-          // Jump left then animate back to 0
-          track.classList.add('is-jump');
-          track.style.transform = `translateX(-${shiftPx}px)`;
-          track.getBoundingClientRect(); // force reflow
-
-          track.classList.remove('is-jump');
-          track.classList.add('is-shifting');
-          track.style.transform = 'translateX(0)';
-
-          const onEnd = () => {
-            track.removeEventListener('transitionend', onEnd);
-            track.classList.remove('is-shifting');
-            setActive(1);
-            isAnimating = false;
-          };
-
-          track.addEventListener('transitionend', onEnd);
+          setActive(1);
+          isAnimating = false;
         }
 
         // Init
