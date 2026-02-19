@@ -122,25 +122,14 @@ a { text-decoration: none; color: inherit; }
 /* Logo positioned top-left inside hero */
 .hero-logo {
   position: absolute;
-  top: 28px;
-  left: 48px;
+  top: 14px;
+  left: 20px;
   margin: 0;
-}
-
-.hero-logo img {
-  width: 140px; /* smaller logo */
-  height: auto;
   display: block;
 }
 
-.hero-logo {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 22px;
-}
-
 .hero-logo img {
-  width: min(220px, 60vw);
+  width: 70px; /* ~50% smaller */
   height: auto;
   display: block;
 }
