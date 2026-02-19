@@ -402,16 +402,23 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* Ensure the image blocks always render (some browsers can be finicky with fr tracks) */
-.persona-img { display: block; }
-
 .persona-img {
   width: 100%;
   border-radius: var(--radius-md);
-  background: rgba(22, 30, 84, 0.12);
-  outline: 2px solid rgba(255, 152, 106, 0.18);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: rgba(22, 30, 84, 0.08);
+  border: 2px dashed rgba(22, 30, 84, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.persona-img-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(22, 30, 84, 0.55);
 }
 
 .persona-img--top { height: 420px; }
